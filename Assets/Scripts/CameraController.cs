@@ -5,6 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     PlayerActions playerActions;
+
+    public GameObject ground;
+    public Vector3 groundBounds;
+    public float boundsX;
+    public float boundsXNeg;
+    public float boundsZ;
+    public float boundsZNeg;
     public float mouseScrollY;
     public Vector2 mousePos;
     public Vector2 mousePosPlacement;
@@ -69,6 +76,13 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        groundBounds = ground.GetComponent<Renderer>().bounds.extents;
+        boundsZ = groundBounds.z - 8;
+        boundsZNeg = -groundBounds.z + 8;
+        boundsX = groundBounds.x - 8; 
+        boundsXNeg = -groundBounds.x + 8;
+        print(boundsXNeg);
+
         //zooming
         curZoom += mouseScrollY * -zoomSpeed;
         Mathf.Clamp(curZoom, minZoom, maxZoom);
@@ -92,9 +106,24 @@ public class CameraController : MonoBehaviour
 
         Vector3 dir = forward * input_Movement.y + right * input_Movement.x;
         dir.Normalize();
-
         dir *= moveSpeed * Time.deltaTime;
 
-        transform.position += dir;
+            
+        if (input_Movement.x >= Mathf.Epsilon && transform.position.x <= boundsX || input_Movement.y >= Mathf.Epsilon && transform.position.z <= boundsZ)
+        {
+            transform.position += dir;// move toward positive bounds
+        }
+        else if (input_Movement.x <= -Mathf.Epsilon && transform.position.x >= boundsXNeg || input_Movement.y <= -Mathf.Epsilon && transform.position.z >= boundsZNeg)
+        {
+            transform.position += dir;
+        }
+        else if (input_Movement.x >= Mathf.Epsilon && transform.position.x <= boundsX && input_Movement.y <= -Mathf.Epsilon && transform.position.z >= boundsZNeg) 
+        {
+            transform.position += dir;
+        }
+        else if (input_Movement.x <= -Mathf.Epsilon && transform.position.x >= boundsXNeg && input_Movement.y >= Mathf.Epsilon && transform.position.z <= boundsZ) 
+        {
+            transform.position += dir;
+        }
     }
 }
