@@ -44,8 +44,14 @@ public class BuildingPlacement : MonoBehaviour
             curIndicatorPos = Selector.instance.GetCurTilePosition();
 
             if (currentlyPlacing) {
-                placementIndicator.transform.position = curIndicatorPos;
+                if (cameraCo.rotatePlacementPressed % 4 != 0 && curBuildingPreset.twosquare) {
+                placementIndicator.transform.position = curIndicatorPos + curPlaceRotateOffset + new Vector3(-0.5f, 0f, 0f);
                 placementIndicator.transform.GetChild(currentC).localRotation = Quaternion.Euler(new Vector3(0, cameraCo.rotatePlacementPressed * 90, 0));
+                }
+                else {
+                    placementIndicator.transform.position = curIndicatorPos;
+                    placementIndicator.transform.GetChild(currentC).localRotation = Quaternion.Euler(new Vector3(0, cameraCo.rotatePlacementPressed * 90, 0));
+                }
             }
             else if (currentlyBulldozering)
                 bulldozeIndicator.transform.position = curIndicatorPos;
@@ -97,6 +103,11 @@ public class BuildingPlacement : MonoBehaviour
                     case "Road":
                         currentC = 6;
                         placementIndicator.transform.GetChild(6).gameObject.SetActive(true); 
+                        placementIndicator.transform.position = new Vector3(0, -99, 0);
+                        break;
+                    case "RoadCross":
+                        currentC = 7;
+                        placementIndicator.transform.GetChild(7).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
                     default:
@@ -177,6 +188,10 @@ public class BuildingPlacement : MonoBehaviour
             {
                 City.instance.OnRemoveBuilding(buildingToDestroy);
             }
+        }
+
+        public void PressedButton() {
+            print("i'm pressed");
         }
 }
 
