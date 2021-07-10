@@ -110,6 +110,11 @@ public class BuildingPlacement : MonoBehaviour
                         placementIndicator.transform.GetChild(7).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
+                    case "Tjunction":
+                        currentC = 8;
+                        placementIndicator.transform.GetChild(8).gameObject.SetActive(true); 
+                        placementIndicator.transform.position = new Vector3(0, -99, 0);
+                        break;
                     default:
                         break;
                 }
@@ -143,13 +148,12 @@ public class BuildingPlacement : MonoBehaviour
                     GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos, Quaternion.Euler(new Vector3(0, cameraCo.rotatePlacementPressed * 90, 0)));
                     City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
                     placeLocations.Add(curIndicatorPos);
-                    cameraCo.rotatePlacementPressed = 0;
                 }
                 else {
                     GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos, Quaternion.identity);
                     City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
                     placeLocations.Add(curIndicatorPos);
-                    cameraCo.rotatePlacementPressed = 0;
+
                 }
             }
 
@@ -161,22 +165,26 @@ public class BuildingPlacement : MonoBehaviour
                     City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
                     placeLocations.Add(curIndicatorPos);
                     placeLocations.Add(curIndicatorPos + new Vector3(0f, 0f, 1f));
-                    cameraCo.rotatePlacementPressed = 0;
+
                 }
                 else {
                     GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos + curPlaceOffset, Quaternion.Euler(new Vector3(0, cameraCo.rotatePlacementPressed * 90, 0)));
                     City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
                     placeLocations.Add(curIndicatorPos);
                     placeLocations.Add(curIndicatorPos + curPlaceNextTo);
-                    cameraCo.rotatePlacementPressed = 0;
+
                 }
             }
 
 
-            if (curBuildingPreset.prefab.tag == "road")
+            if (curBuildingPreset.prefab.tag == "road") {
                 return;
-            else
+            }
+            else {
+                cameraCo.rotatePlacementPressed = 0;
                 CancelBuildingPlacement();
+            }
+                
 
             currentC = 0;
         }
@@ -186,12 +194,11 @@ public class BuildingPlacement : MonoBehaviour
             Building buildingToDestroy = City.instance.buildings.Find(x => x.transform.position == curIndicatorPos);
             if (buildingToDestroy != null)
             {
-                City.instance.OnRemoveBuilding(buildingToDestroy);
+                if (placeLocations.Contains(buildingToDestroy.transform.position)) {
+                    placeLocations.Remove(buildingToDestroy.transform.position);
+                }
+                    City.instance.OnRemoveBuilding(buildingToDestroy);
             }
-        }
-
-        public void PressedButton() {
-            print("i'm pressed");
         }
 }
 

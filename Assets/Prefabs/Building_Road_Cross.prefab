@@ -54,8 +54,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2511084499510579223}
     m_Modifications:
     - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
+      propertyPath: lengthInSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 15.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time

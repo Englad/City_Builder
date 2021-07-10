@@ -105,8 +105,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 7295154745652374684}
     m_Modifications:
     - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
+      propertyPath: lengthInSec
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 406.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237931485411695255, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4237931485425852375, guid: 30d6e8182ee079946a679d63df94cded, type: 3}
       propertyPath: m_RootOrder

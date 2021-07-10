@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7e838a7380cfe944a37d6e783051377, type: 3}
-  m_Name: Road
+  m_Name: Tjunction
   m_EditorClassIdentifier: 
-  cost: 100
-  costPerTurn: 10
-  prefab: {fileID: 6194333507083551103, guid: f981048cca337b44f8dfce267fcc72cd, type: 3}
+  cost: 150
+  costPerTurn: 5
+  prefab: {fileID: 265870514761109832, guid: b5d1418b2ea459a4083c6037b212b2c0, type: 3}
   population: 0
   jobs: 0
   food: 0
