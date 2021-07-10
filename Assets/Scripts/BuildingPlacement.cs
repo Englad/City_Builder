@@ -115,6 +115,11 @@ public class BuildingPlacement : MonoBehaviour
                         placementIndicator.transform.GetChild(8).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
+                    case "RoadCorner":
+                        currentC = 9;
+                        placementIndicator.transform.GetChild(9).gameObject.SetActive(true); 
+                        placementIndicator.transform.position = new Vector3(0, -99, 0);
+                        break;
                     default:
                         break;
                 }
