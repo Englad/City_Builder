@@ -42,7 +42,7 @@ public class City : MonoBehaviour
     void Start()
     {
         UpdateStatText();
-        InvokeRepeating("EndTurn", 10f, 10f);
+        InvokeRepeating("EndDay", 10f, 10f);
     }
 
     public void OnRemoveBuilding(Building building)
@@ -60,7 +60,7 @@ public class City : MonoBehaviour
         statsText.text = string.Format("Day: {0}   Money: £ {1}   Pop: {2} / {3}   Jobs: {4} / {5}   Food: {6}", new object[7] { day, money, curPopulation, maxPopulation, curJobs, maxJobs, curFood });
     }
 
-    public void EndTurn()
+    public void EndDay()
     {
         day++;
         CalculateMoney();

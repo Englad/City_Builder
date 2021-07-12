@@ -67,6 +67,7 @@ public class BuildingPlacement : MonoBehaviour
 
         public void BeginNewBuildingPlacement(BuildingPreset preset)
         {
+            CancelBuildingPlacement();
             curBuildingPreset = preset;
 
             if (city.money >= curBuildingPreset.cost)
@@ -105,19 +106,14 @@ public class BuildingPlacement : MonoBehaviour
                         placementIndicator.transform.GetChild(6).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
-                    case "RoadCross":
+                    case "Tjunction":
                         currentC = 7;
                         placementIndicator.transform.GetChild(7).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
-                    case "Tjunction":
+                    case "RoadCorner":
                         currentC = 8;
                         placementIndicator.transform.GetChild(8).gameObject.SetActive(true); 
-                        placementIndicator.transform.position = new Vector3(0, -99, 0);
-                        break;
-                    case "RoadCorner":
-                        currentC = 9;
-                        placementIndicator.transform.GetChild(9).gameObject.SetActive(true); 
                         placementIndicator.transform.position = new Vector3(0, -99, 0);
                         break;
                     default:
